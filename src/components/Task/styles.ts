@@ -21,11 +21,6 @@ export const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 24,
   },
-  buttonCheck:{
-    
-},
-  buttonDelete:{
-    
-  }
-
+  buttonCheck:{},
+  buttonDelete:{}
 });

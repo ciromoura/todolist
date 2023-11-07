@@ -19,33 +19,43 @@ import { styles } from "./styles";
 import { Task } from "../../components/Task";
 
 export default function Home() {
-  const [task, setTask] = useState<string[]>([]);
+  const [tasks, setTasks] = useState<{ description: string; status: string }[]>(
+    []
+  );
   const [taskText, setTaskText] = useState("");
 
   function handleTaskAdd() {
-    if (task.includes(taskText)) {
+    if (tasks.some((task) => task.description === taskText)) {
       setTaskText("");
       return Alert.alert("Erro!", "Tarefa já existe.");
     }
 
-    setTask((prevState) => [...prevState, taskText]);
+    const newTask = { description: taskText, status: "ativa" };
+    setTasks([...tasks, newTask]);
     setTaskText("");
   }
 
-  function handleTaskRemove(name: string) {
-    Alert.alert("Atenção!", `Deseja remover ${name}?`, [
-      {
-        text: "Sim",
-        onPress: () =>
-          setTask((prevState) =>
-            prevState.filter((participant) => participant !== name)
-          ),
-      },
-      {
-        text: "Não",
-        style: "cancel",
-      },
-    ]);
+  function handleTaskRemove(taskToRemove: {
+    description: string;
+    status: string;
+  }) {
+    Alert.alert(
+      "Atenção!",
+      `Deseja remover a tarefa: ${taskToRemove.description} (${taskToRemove.status})?`,
+      [
+        {
+          text: "Sim",
+          onPress: () => {
+            const updatedTasks = tasks.filter((task) => task !== taskToRemove);
+            setTasks(updatedTasks);
+          },
+        },
+        {
+          text: "Não",
+          style: "cancel",
+        },
+      ]
+    );
   }
 
   return (
@@ -86,12 +96,11 @@ export default function Home() {
 
           <View style={styles.tasks}>
             <FlatList
-              data={task}
-              keyExtractor={(item) => item}
+              data={tasks}
+              keyExtractor={(item, index) => index.toString()}
               renderItem={({ item }) => (
                 <Task
-                  key={item}
-                  title={item}
+                  title={item.description}
                   onRemove={() => handleTaskRemove(item)}
                 />
               )}
