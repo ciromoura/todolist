@@ -40,10 +40,9 @@ export const styles = StyleSheet.create({
       alignItems: "center",
       borderRadius: 6,
       borderWidth: 1,
-      borderColor: "#0D0D0D",
       backgroundColor: "#262626",
       flex: 1,
-      color: "#808080",
+      color: "#F2F2F2",
     },
     buttonNew: {
       padding: 18,
@@ -56,6 +55,8 @@ export const styles = StyleSheet.create({
       justifyContent: "flex-start",
       alignItems: "center",
       flexDirection: "column",
+      flex: 1,
+      paddingBottom: 48
     },
     info: {
       width: "100%",
@@ -78,9 +79,11 @@ export const styles = StyleSheet.create({
     },
     textCreated: {
       color: "#4EA8DE",
+      fontWeight: "bold",
     },
     textDone: {
       color: "#8284FA",
+      fontWeight: "bold",
     },
     counter: {
       flexDirection: "column",
@@ -91,17 +94,25 @@ export const styles = StyleSheet.create({
       paddingVertical: 2,
       paddingHorizontal: 8,
       color: "#D9D9D9",
+      fontWeight: "bold",
     },
     tasks: {
       justifyContent: "flex-start",
       width: "100%",
       flexDirection: "column",
     },
+    listEmpty:{
+      paddingHorizontal: 20,
+      paddingVertical: 48,
+      flex: 1,
+      justifyContent: "flex-start",
+      alignItems: "center",
+      alignContent: "center",
+    },
     listEmptyText:{
-      color: '#FFFFFF',
-    fontSize: 14,
-    textAlign: 'center',
-    marginTop: 48
+      color: '#808080',
+      fontSize: 14,
+      textAlign: 'center',
     }
   });
   
